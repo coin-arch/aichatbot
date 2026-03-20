@@ -31,7 +31,7 @@ build/
 # Project specific
 tmp/
 .gemini/
-backend/data/policies/*.pdf
-backend/data/policies/*.txt
+# backend/data/policies/*.pdf
+# backend/data/policies/*.txt
 # Keep the folder but ignore the contents if you want a clean repo
-# !backend/data/policies/.gitkeep
+!backend/data/policies/.gitkeep

@@ -20,6 +20,10 @@ const namespace = process.env.PINECONE_NAMESPACE || "default";
 app.use(cors());
 app.use(express.json({ limit: "2mb" }));
 
+app.get("/", (_req, res) => {
+  res.send("<h1>SSP Agarbatti AI Support System</h1><p>Status: Online & Ready</p>");
+});
+
 function validateEnvironment() {
   const requiredVars = ["GOOGLE_API_KEY", "PINECONE_API_KEY", "PINECONE_INDEX_NAME"];
   const missingVars = requiredVars.filter((key) => !process.env[key]);

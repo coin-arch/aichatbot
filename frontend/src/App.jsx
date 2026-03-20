@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_URL = "https://aichatbot-nflo.onrender.com";
+
 const starterMessages = [
   {
     role: "assistant",
@@ -29,7 +31,7 @@ export default function App() {
     setStatusMessage("");
 
     try {
-      const response = await fetch("/api/ingest", {
+      const response = await fetch(`${API_URL}/api/ingest`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({}),
@@ -57,7 +59,7 @@ export default function App() {
     setIsChatting(true);
 
     try {
-      const response = await fetch("/api/chat", {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: userMessage.content }),
