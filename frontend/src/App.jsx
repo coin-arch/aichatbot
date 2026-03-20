@@ -20,10 +20,10 @@ export default function App() {
   const [showAdmin, setShowAdmin] = useState(false);
 
   const quickQuestions = [
-    "What are your main products?",
-    "Where is your head office located?",
-    "How can I contact support?",
-    "What is your mission and vision?",
+    "What are the benefits of using BarterBuild?",
+    "How does user verification work?",
+    "What is RB and UCB?",
+    "How can I upgrade my profile?",
   ];
 
   async function handleIngest() {
@@ -94,7 +94,7 @@ export default function App() {
             <div className="header-info">
               <span className="dot"></span>
               <div>
-                <h3>SSP Agarbatti</h3>
+                <h3>BarterBuild</h3>
                 <p>Support Assistant</p>
               </div>
             </div>
