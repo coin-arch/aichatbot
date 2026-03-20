@@ -1,0 +1,23 @@
+{
+  "name": "rag-chatbot-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@langchain/core": "^1.1.33",
+    "@langchain/google-genai": "^2.1.26",
+    "@langchain/pinecone": "^1.0.1",
+    "@langchain/textsplitters": "^1.0.1",
+    "@pinecone-database/pinecone": "^5.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "pdf-parse": "^2.4.5",
+    "pdfkit": "^0.18.0"
+  }
+}
