@@ -132,7 +132,7 @@ app.post("/api/chat", async (req, res) => {
 
     const model = new ChatGoogleGenerativeAI({
       apiKey: process.env.GOOGLE_API_KEY,
-      model: "gemini-flash-latest",
+      model: "gemini-1.5-flash",
       temperature: 0,
       maxRetries: 2,
     });

@@ -6,7 +6,7 @@ const starterMessages = [
   {
     role: "assistant",
     content:
-      "Hello! I'm your SSP Agarbatti support assistant. How can I help you today?",
+      "Hello! I'm your BarterBuild support assistant. How can I help you today?",
   },
 ];
 
@@ -20,10 +20,12 @@ export default function App() {
   const [showAdmin, setShowAdmin] = useState(false);
 
   const quickQuestions = [
-    "What are the benefits of using BarterBuild?",
+    "What is BarterBuild?",
+    "How does the barter system work?",
+    "What are tokens and how do I get them?",
+    "How do I redeem tokens?",
+    "What information do I get after spending tokens?",
     "How does user verification work?",
-    "What is RB and UCB?",
-    "How can I upgrade my profile?",
   ];
 
   async function handleIngest() {
