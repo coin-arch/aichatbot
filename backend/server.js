@@ -130,9 +130,11 @@ app.post("/api/chat", async (req, res) => {
       ["human", "{question}"],
     ]);
 
+    console.log(`[CHAT] Initializing with model: ${"gemini-flash-latest"}`);
     const model = new ChatGoogleGenerativeAI({
       apiKey: process.env.GOOGLE_API_KEY,
-      model: "gemini-1.5-flash",
+      model: "gemini-flash-latest",
+      convertSystemMessageToHumanContent: true,
       temperature: 0,
       maxRetries: 2,
     });
@@ -165,10 +167,25 @@ app.post("/api/chat", async (req, res) => {
       })),
     });
   } catch (error) {
-    console.error("[CHAT] Failed:", error);
-    res.status(500).json({
+    console.error(`[CHAT] Error for question "${req.body?.question}":`, error);
+    
+    // Check for specific Gemini errors
+    let errorMessage = "We're sorry, but our support assistant is currently unavailable. Please try your question again in a moment.";
+    let statusCode = 500;
+
+    if (error.message?.includes("404") || error.message?.includes("not found")) {
+      errorMessage = "The AI model configuration is incorrect or the model is unavailable. (Error 404)";
+    } else if (error.message?.includes("429") || error.message?.includes("quota")) {
+      errorMessage = "Our support assistant is currently experiencing exceptionally high demand. Please wait a moment and try your question again. We appreciate your patience!";
+      statusCode = 429;
+    } else if (error.message?.includes("API key")) {
+      errorMessage = "Invalid API configuration. Please check your settings.";
+    }
+
+    res.status(statusCode).json({
       success: false,
-      error: error.message || "Failed to answer question.",
+      error: errorMessage,
+      details: process.env.NODE_ENV === "development" ? error.message : undefined,
     });
   }
 });
@@ -183,4 +200,5 @@ app.use((_req, res) => {
 app.listen(port, () => {
   console.log(`[SERVER] Backend running on http://localhost:${port}`);
   console.log(`[SERVER] Policy documents scanning: ${path.resolve("data", "policies")}`);
+  console.log(`[SERVER] Using model: gemini-flash-latest`);
 });
